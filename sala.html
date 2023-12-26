@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sala</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <button class="sair" type="button" onclick="exitRoom()">Sair</button>
+      <div class="chatroom-header">
+        <div id="chatroom-name"></div>
+      </div>
+
+      <div id="message-list" class="scrollable">
+      </div>
+    </div>
+
+    <form onsubmit="send(event)">
+      <input type="text" placeholder="Mensagem" name="message"  autocomplete="off"/>
+      <button class="enviar">Enviar</button>
+    </form>
+
+    <script src="js/common.js"></script>
+    <script src="js/sala.js"></script>
+  </body>
+</html>

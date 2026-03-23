@@ -17,7 +17,7 @@ function updateRoomList() {
       `
     <li>
       <span>${chatroom.name}</span>
-      <button type="button" onclick="enterChatroom('${chatroom.name}')">Entrar</button>
+        <button class="send-button" type="button" onclick="enterChatroom('${chatroom.name}')">- Entrar</button>
     </li>
     `
     );

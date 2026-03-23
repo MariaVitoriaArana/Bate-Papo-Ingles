@@ -21,15 +21,33 @@ function updateMessageList() {
   if (chatroom) {
     messageList.innerHTML = '';
 
+    let lastDate = null;
+
     for (const message of chatroom.messages) {
+      const messageDate = new Date(message.createdAt);
+
+      const formattedDate = messageDate.toLocaleDateString('pt-BR');
+      const formattedTime = messageDate.toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      // Se a data mudou, mostra um separador
+      if (formattedDate !== lastDate) {
+        messageList.insertAdjacentHTML(
+          'beforeend',
+          `<div class="date-separator">${formattedDate}</div>`
+        );
+        lastDate = formattedDate;
+      }
+
       messageList.insertAdjacentHTML(
         'beforeend',
         `
-        <div class="message">
+        <div class="message ${message.author === userName ? 'me' : ''}">
+          <div class="author-name">${message.author}</div>
           <div class="content">${message.content}</div>
-          <span class="author">${message.author}</span>
-          •
-          <span class="date">${dateFormatter.format(message.createdAt)}</span>
+          <div class="time">${formattedTime}</div>
         </div>
         `
       );
@@ -39,7 +57,6 @@ function updateMessageList() {
 
 function exitRoom() {
   removeUserFromRoom(chatroomName, userName);
-
   const chatroom = getChatroom(chatroomName);
 
   if (chatroom && chatroom.users.length === 0) {
@@ -56,9 +73,7 @@ function send(event) {
 
   if (form.message.value) {
     sendMessageToRoom(chatroomName, userName, form.message.value);
-
     form.message.value = '';
-
     updateMessageList();
   }
 }

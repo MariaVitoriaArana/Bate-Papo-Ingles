@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sala</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Sala</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
 
-  <body>
-    <div class="container">
-      <button class="exit-button" type="button" onclick="exitRoom()">Sair</button>      
-      <div class="chatroom-header">
-        <div id="chatroom-name"></div>
-      </div>
-
-      <div id="message-list" class="scrollable">
-      </div>
-
-      <form onsubmit="send(event)">
-        <input type="text" placeholder="Mensagem" name="message" />
-        <button class="send">Enviar</button>
-      </form>
+<body>
+  <div class="container sala">
+    <button class="exit-button" onclick="exitRoom()">Sair</button>
+      <div class="titulo-chat">Chat</div>
+    <div class="chatroom-header">
+      <div id="chatroom-name"></div>
     </div>
 
-    <script src="js/common.js"></script>
-    <script src="js/sala.js"></script>
-  </body>
+    <div id="message-list"></div>
+
+    <form onsubmit="send(event)">
+      <input type="text" name="message" placeholder="Mensagem" autocomplete="off">
+      <button class="send">Enviar</button>
+    </form>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/sala.js"></script>
+  
+</body>
 </html>

@@ -1,0 +1,386 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 20% 30%, #5f2eea 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, #1e90ff 0%, transparent 40%),
+              linear-gradient(135deg, #0f0c29, #1a1a3a, #24243e);
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: #4e0c95;
+  filter: blur(200px);
+  opacity: 0.4;
+  animation: floatGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow {
+  from {
+    transform: translate(-100px, -50px);
+  }
+  to {
+    transform: translate(100px, 50px);
+  }
+}
+
+body > div {
+  position: relative;
+  z-index: 1;
+  width: 380px;
+  padding: 45px 35px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: white;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.entrada::before {
+  content: "Bem-Vindo";
+  display: block;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #4facfe, #8e2de2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.titulo-chat {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 10px;
+
+  background: linear-gradient(90deg, #4facfe, #8e2de2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo{
+    position: absolute;
+    top: -90px; /* ajuste a altura */
+    left: 49%;
+    transform: translateX(-50%);
+
+    z-index: 999;
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    background: linear-gradient(90deg, #4facfe, #f8f9fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 10px rgba(79,172,254,.5),
+        0 0 20px rgba(142,45,226,.5);
+}
+
+body > div > div {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  outline: none;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  transition: 0.3s ease;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus {
+  border: 1px solid #8e2de2;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(142, 45, 226, 0.6);
+  transform: scale(1.02);
+}
+
+.myButton {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(to bottom, #2681d1b9, #9862c7b9);
+  box-shadow: 0 10px 20px rgba(142, 45, 226, 0.4);
+  transition: 0.3s ease;
+}
+
+.myButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(142, 45, 226, 0.6);
+}
+
+.myButton:active {
+  transform: scale(0.97);
+}
+
+#info {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #cfd9ff;
+  min-height: 20px;
+}
+
+/*Lista de Salas */
+#chatroom-list {
+  list-style: none;
+  margin-top: 20px;
+  max-height: 130px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+#chatroom-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chatroom-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(#99a4fcd6, #3d81ff);
+  margin-top: 80px;
+  border-radius: 10px;
+
+}
+
+.send-button{
+    background-color: transparent;
+    border: none;                 
+    padding: 5px 5px;   
+    font-size: 15px;
+    cursor: pointer; 
+    outline: none;
+    transition: all 0.3s ease;
+    color: #d8a4ff;
+    margin-left: -4px;
+}
+
+.send-button:hover {
+  color: rgb(227, 193, 255);
+  padding-bottom: 4px; 
+  text-shadow:        
+    0 0 10px #d6c3f5fd,
+    0 0 151px #bc13fe;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 700px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chatroom-header {
+  padding: 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  background: linear-gradient(90deg, rgba(79,172,254,0.2), rgba(142,45,226,0.2));
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#chatroom-name {
+  background: linear-gradient(90deg, #4facfe, #8e2de2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/*Boão - Sair*/
+.exit-button {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3e0c64;
+  background: linear-gradient(90deg, #c688e9, #e0b2fd);
+  transition: 0.3s ease;
+}
+
+.exit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(184, 142, 252, 0.6);
+}
+
+/*Data*/
+.date-separator {
+  align-self: center;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.15);
+  margin: 10px 0;
+  color: #ddd;
+}
+
+/*Lista de Mensagens*/
+#message-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#message-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#message-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(#99a4fcd6, #3b80ff); 
+  border-radius: 10px;
+}
+
+.message {
+  position:relative;
+  max-width: 75%;
+  width: 90%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.4;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  word-wrap: break-word;  
+  align-self: flex-start;
+  margin-left: 10px;  
+  text-align: left;
+}
+
+/* Mensagem do próprio usuário */
+.message.me {
+  align-self: flex-end;
+   margin-right: 10px;      
+  margin-left: 0;
+  background: rgba(255,255,255,0.1);  
+  text-align: left;
+}
+
+/* Nome do autor */
+.author-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}
+
+/* Conteúdo */
+.content {
+  margin-bottom: 6px;
+}
+
+/* Hora no canto inferior direito */
+.time {
+  position: absolute;
+  bottom: 6px;
+  right: 12px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/*Formulário*/
+form {
+  display: flex;
+  padding: 15px;
+  gap: 0px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+form input {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 14px;
+}
+
+form input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+form input:focus {
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 10px rgba(142,45,226,0.5);
+}
+
+/* Botão enviar */
+.send {
+  padding: 12px 18px;
+   margin-left: 5px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #3e0c64;
+  background: linear-gradient(90deg, #a9c9fc, #8cbcff);
+  transition: 0.3s ease;
+}
+
+.send:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(162, 180, 255, 0.6);
+}
